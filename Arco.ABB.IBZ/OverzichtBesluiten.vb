@@ -157,7 +157,7 @@ Public Class OverzichtBesluiten
 
     Private Shared Function GetAutoOpstart(ByVal lsSoort As String, ByVal lsTypeBestuur As String) As Integer
         ' mail van Heidi van 01/02/2011 16:34
-        If (lsTypeBestuur = "Bestuur van de eredienst" And lsSoort = "meerjarenplan") Or (lsTypeBestuur = "Autonoom GemeenteBedrijf" And lsSoort = "rekening") Then
+        If (lsTypeBestuur = "Bestuur van de eredienst" And lsSoort = "meerjarenplan") Then
             Return 0
         Else
             Return ABB.Common.SoortInzendingsplichtigBesluit.GetSoortInzendingsplichtigBesluit(lsSoort).AutoOpstart
