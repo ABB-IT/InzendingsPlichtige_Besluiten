@@ -153,12 +153,23 @@ Public Class AlgemeenScript_Onkeep
                         'rest
                         If lssoortBesluit = "rekening" Or lssoortBesluit = "eindrekening" Then
                             If DateDiff("n", lsDatumbesluit, "1/1/2013") < 1 Then
-                                ldaantaldagen = 152
-                                'initdate = CStr(DateAdd("d", ldaantaldagen, CDate(lsontvangstdatum)))
-                                'If Weekday(CDate(initdate)) = 1 Or Weekday(CDate(initdate)) = 7 Then
-                                'initdate = ABB.AlgemeenToezicht.TermijnBerekening.AddDays(lsDatumbesluit, ldaantaldagen)
-                                initdate = ABB.AlgemeenToezicht.TermijnBerekening.AddDays(lsontvangstdatum, ldaantaldagen)
-                                'End If
+                                If lstype = "Autonoom GemeenteBedrijf" Then
+                                    ldaantaldagen = 52
+                                    'initdate = CStr(DateAdd("d", ldaantaldagen, CDate(lsontvangstdatum)))
+                                    'If Weekday(CDate(initdate)) = 1 Or Weekday(CDate(initdate)) = 7 Then
+                                    'initdate = ABB.AlgemeenToezicht.TermijnBerekening.AddDays(lsDatumbesluit, ldaantaldagen)
+                                    initdate = ABB.AlgemeenToezicht.TermijnBerekening.AddDays(lsontvangstdatum, ldaantaldagen)
+                                    'End If
+                                Else
+                                    ldaantaldagen = 152
+                                    'initdate = CStr(DateAdd("d", ldaantaldagen, CDate(lsontvangstdatum)))
+                                    'If Weekday(CDate(initdate)) = 1 Or Weekday(CDate(initdate)) = 7 Then
+                                    'initdate = ABB.AlgemeenToezicht.TermijnBerekening.AddDays(lsDatumbesluit, ldaantaldagen)
+                                    initdate = ABB.AlgemeenToezicht.TermijnBerekening.AddDays(lsontvangstdatum, ldaantaldagen)
+                                    'End If
+
+                                End If
+                            
                             Else
                                 ldaantaldagen = 300
                                 'initdate = ABB.AlgemeenToezicht.TermijnBerekening.CalcTermijnDate(lsontvangstdatum, ldaantaldagen)
