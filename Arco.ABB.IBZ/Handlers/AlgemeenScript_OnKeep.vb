@@ -147,8 +147,9 @@ Public Class AlgemeenScript_Onkeep
 
                 Else
                     If lstype = "Intergemeentelijk SamenwerkingsVerband" Then
-                        ldaantaldagen = 300
-                        initdate = ABB.AlgemeenToezicht.TermijnBerekening.AddDays(lsontvangstdatum, ldaantaldagen)
+                        ldaantaldagen = 52
+                        initdate = ABB.AlgemeenToezicht.TermijnBerekening.AddDays(lspostdatum, ldaantaldagen)
+
                     Else
                         'rest
                         If lssoortBesluit = "rekening" Or lssoortBesluit = "eindrekening" Then
