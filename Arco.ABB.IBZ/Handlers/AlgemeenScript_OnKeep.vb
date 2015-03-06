@@ -15,7 +15,13 @@ Public Class AlgemeenScript_Onkeep
             WFCurrentCase.SetProperty("bestuur_straatnr", loBestuur.StraatNr)
             WFCurrentCase.SetProperty("bestuur_postnummer", loBestuur.PostCode)
             WFCurrentCase.SetProperty("bestuur_gemeente", loBestuur.Gemeente)
+            WFCurrentCase.SetProperty("bestuur_lokatie", Left(loBestuur.PostCode, 1))
+
+            WFCurrentCase.SetProperty("bestuur_lokatie", loBestuur.BESTUUR_LOKATIE)
+
             WFCurrentCase.SetProperty("bestuur_id", lsbestuur)
+
+
             ' terug leegmaken anders terug opgehaald
             WFCurrentCase.SetProperty("bestuur", "")
         End If
@@ -141,8 +147,13 @@ Public Class AlgemeenScript_Onkeep
                         ldaantaldagen = 200
                         initdate = CStr(DateAdd("d", ldaantaldagen, CDate(lsontvangstdatum)))
                     Else
-                        ldaantaldagen = 200
-                        initdate = ABB.AlgemeenToezicht.TermijnBerekening.AddDays(lsontvangstdatum, ldaantaldagen)
+                        If lssoortBesluit = "beroep tegen beslissing provinciegouverneur houdende aanpassing MJP en budget" Then
+                            ldaantaldagen = 30
+                            initdate = ABB.AlgemeenToezicht.TermijnBerekening.AddDays(lsontvangstdatum, ldaantaldagen)
+                        Else
+                            ldaantaldagen = 200
+                            initdate = ABB.AlgemeenToezicht.TermijnBerekening.AddDays(lsontvangstdatum, ldaantaldagen)
+                        End If
                     End If
 
                 Else
@@ -170,7 +181,7 @@ Public Class AlgemeenScript_Onkeep
                                     'End If
 
                                 End If
-                            
+
                             Else
                                 ldaantaldagen = 300
                                 'initdate = ABB.AlgemeenToezicht.TermijnBerekening.CalcTermijnDate(lsontvangstdatum, ldaantaldagen)
